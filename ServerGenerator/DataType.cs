@@ -2,20 +2,36 @@
 {
     public enum DataType
     {
-        boolean,
-        booleans,
         String,
-        Strings,
-        Integer,
-        Integers,
-        DOuble,
-        Doubles,
-        Email,
-        Emails,
+        Number,
         Date,
-        Dates,
+        Buffer,
+        Boolean,
+        Mixed,
         ObjectId,
-        ObjectIds
+        Array,
+        Decimal128,
+        Map,
+        Schema,
+        UUID,
+        BigInt,
+        Double,
+        Int32,
+        Strings,
+        Numbers,
+        Dates,
+        Buffers,
+        Booleans,
+        Mixeds,
+        ObjectIds,
+        Arrays,
+        Decimal128s,
+        Maps,
+        Schemas,
+        UUIDs,
+        BigInts,
+        Doubles,
+        Int32s
     }
 }
 

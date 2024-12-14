@@ -2,8 +2,6 @@
 {
     internal abstract class Server : IGenerate<bool>
     {
-        public required string Name { get; init; }
-        public required string RootDirectory { get; init; }
         public required string Language { get; init; }
         public required string Database { get; init; }
         public required string DataBaseURL { get; init; }
