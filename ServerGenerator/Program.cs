@@ -1,4 +1,5 @@
 ﻿using ServerGenerator;
+using ServerGenerator.nodejs;
 
 Model[] models = [
    new NodeModel()

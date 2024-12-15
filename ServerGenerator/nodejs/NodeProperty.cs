@@ -13,7 +13,7 @@
 
             return $"\t\t{Name}:" +
                 "{\r\n" +
-                $"\t\t\ttype: {(isArray ? "[" + Type.ToString().Substring(0, Type.ToString().Length - 1) + "]" : Type)},\r\n" +
+                $"\t\t\ttype: {(isArray ? "[mongoose.SchemaTypes." + Type.ToString().Substring(0, Type.ToString().Length - 1) + "]" : "mongoose.SchemaTypes."+Type)},\r\n" +
                 (IsRequired ? "\t\t\trequire: true,\r\n" : "") +
                 (DefaultValue != null ? $"\t\t\tdefault: {DefaultValue},\r\n" : "") +
                 (IsUnique ? "\t\t\tunique: true,\r\n" : "") +

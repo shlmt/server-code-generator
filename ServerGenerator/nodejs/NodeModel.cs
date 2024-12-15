@@ -4,6 +4,7 @@
     {
         public override bool Generate()
         {
+            string modelName = Utils.CapitalizeFirstLetter(Name);
             string propertiesCode = "";
             foreach (NodeProperty property in Properties)
             {
@@ -25,19 +26,7 @@
                 "\r\n" +
                 $"module.exports = mongoose.model('{Utils.CapitalizeFirstLetter(Name)}',{Name}Schema)";
 
-            try
-            {
-                string directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName, "models");
-                Utils.CreateFolder(directoryPath);
-                Utils.CreateFile(Path.Combine(directoryPath, Name + ".js"), modelCode, "models/" + Name);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                return false;
-            }
-
-            return true;
+                return Utils.CreateFile(Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName, "models", modelName + ".js"), modelCode, "models/" + modelName + ".js");
         }
     }
 }

@@ -4,20 +4,36 @@
     {
         public override bool Generate()
         {
-            string routesCode = "//routes\\r\\n\"";
+            string routesCode = "//routes\r\n";
+            string directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName, "models");
+            if (!Utils.CreateFolder(directoryPath, "models")) return false;
+
+            directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName, "controllers");
+            if (!Utils.CreateFolder(directoryPath, "controllers")) return false;
+
+            directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName, "routes");
+            if (!Utils.CreateFolder(directoryPath, "routes")) return false;
+
             foreach (Model model in Models)
             {
                 if (model.Generate())
                 {
-                    /*
-                     new NodeController() {  }.genearte();
-                    if(){
-                        new route.generate
-                        if(){
-                            routesCode+="route"
+                    Controller controller = new NodeController()
+                    {
+                        Model = model,
+                    };
+                    if (controller.Generate())
+                    {
+                        Route route = new NodeRoute()
+                        {
+                            Name = model.Name
+                        };
+                        if (route.Generate())
+                        {
+                            routesCode += $"app.use(\"/api/{model.Name}\", require('./routes/{model.Name}Route'))\r\n";
                         }
                     }
-                    */
+
                 }
             }
 
@@ -94,17 +110,17 @@
 
             try
             {
-                string directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName);
-                Utils.CreateFolder(directoryPath);
+                directoryPath = Path.Combine(ProjectInfo.RootDirectory, ProjectInfo.ProjectName);
+                if (!Utils.CreateFolder(directoryPath, ProjectInfo.ProjectName)) return false;
 
                 Utils.CreateFile(Path.Combine(directoryPath, "server.js"), serverCode, "server.js");
                 Utils.RunNpmCommand(directoryPath, "init -y");
-                Utils.InstallPackages("npm", directoryPath, "express cors dotenv mongoose");
+                //Utils.InstallPackages("npm", directoryPath, "express cors dotenv mongoose");
 
                 Utils.CreateFile(Path.Combine(directoryPath, ".env"), envCode, ".env");
 
                 string configPath = Path.Combine(directoryPath, "config");
-                Utils.CreateFolder(configPath);
+                Utils.CreateFolder(configPath, "config");
 
                 Utils.CreateFile(Path.Combine(configPath, "corsOptions.js"), corsOptionsCode, "corsOptions.js");
                 Utils.CreateFile(Path.Combine(configPath, "dbConn.js"), dbConnCode, "dbConn.js");

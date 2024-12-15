@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace ServerGenerator
 {
@@ -16,18 +13,37 @@ namespace ServerGenerator
             return char.ToUpper(input[0]) + input.Substring(1);
         }
 
-        public static void CreateFolder(string path)
+        public static bool CreateFolder(string path, string desc)
         {
-            Console.Write("create folder");
-            Directory.CreateDirectory(path);
-            Console.WriteLine(" successfully");
+            try
+            {
+                Console.Write("create folder "+desc);
+                Directory.CreateDirectory(path);
+                Console.WriteLine(" successfully");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" unsuccessfully, Error: {ex.Message}");
+                return false;
+            }
+
         }
 
-        public static void CreateFile(string path, string content, string description)
+        public static bool CreateFile(string path, string content, string description)
         {
-            Console.Write($"create {description}");
-            File.WriteAllText(path, content);
-            Console.WriteLine(" successfully");
+            try
+            {
+                Console.Write($"create {description}");
+                File.WriteAllText(path, content);
+                Console.WriteLine(" successfully");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" unsuccessfully, Error: {ex.Message}");
+                return false;
+            }
         }
 
         public static void InstallPackages(string cli, string path, string packages)
