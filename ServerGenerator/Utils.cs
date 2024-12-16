@@ -1,6 +1,5 @@
 ﻿
 using System.Diagnostics;
-using System.Net.Http.Headers;
 
 namespace ServerGenerator
 {
@@ -62,7 +61,7 @@ namespace ServerGenerator
                 process.WaitForExit();
                 if (process.ExitCode == 0)
                     Console.WriteLine(" successfully");
-                else Console.WriteLine(" unsuccessfuly. "+ process.StandardError.ReadToEnd());
+                else Console.WriteLine(" unsuccessfuly");
                 return process.ExitCode == 0;
             }
         }
