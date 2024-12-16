@@ -46,23 +46,13 @@ namespace ServerGenerator
             }
         }
 
-        public static void InstallPackages(string cli, string path, string packages)
+        public static bool RunCommand(string cli, string arguments, string directoryPath)
         {
-            Console.Write("install packages");
-            if (cli == "npm")
-            {
-                RunNpmCommand(path, $"install {packages}");
-                Console.WriteLine(" successfully");
-            }
-            else Console.WriteLine(" unsuccessfuly");
-        }
-
-        public static void RunNpmCommand(string directoryPath, string arguments)
-        {
+            Console.Write($"run command {cli} {arguments}");
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = $"/C npm {arguments}",
+                Arguments = $"/C {cli} {arguments}",
                 WorkingDirectory = directoryPath,
                 CreateNoWindow = true,
                 UseShellExecute = false
@@ -70,9 +60,12 @@ namespace ServerGenerator
             using (var process = Process.Start(processStartInfo))
             {
                 process.WaitForExit();
+                if (process.ExitCode == 0)
+                    Console.WriteLine(" successfully");
+                else Console.WriteLine(" unsuccessfuly. "+ process.StandardError.ReadToEnd());
+                return process.ExitCode == 0;
             }
         }
-
 
     }
 }

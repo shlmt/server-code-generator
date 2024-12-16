@@ -114,8 +114,8 @@
                 if (!Utils.CreateFolder(directoryPath, ProjectInfo.ProjectName)) return false;
 
                 Utils.CreateFile(Path.Combine(directoryPath, "server.js"), serverCode, "server.js");
-                Utils.RunNpmCommand(directoryPath, "init -y");
-                //Utils.InstallPackages("npm", directoryPath, "express cors dotenv mongoose");
+                Utils.RunCommand("npm", "init -y", directoryPath);
+                Utils.RunCommand("npm", "install express cors dotenv mongoose", directoryPath);
 
                 Utils.CreateFile(Path.Combine(directoryPath, ".env"), envCode, ".env");
 
