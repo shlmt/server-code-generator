@@ -61,7 +61,7 @@ Model[] models = [
 ];
 
 ProjectInfo.RootDirectory = "C:\\Users\\משתמש\\הנדסת תוכנה";
-ProjectInfo.ProjectName = "exampleApi";
+ProjectInfo.ProjectName = "exampleApi2";
 
 Server server = new NodeServer()
 {
@@ -89,13 +89,16 @@ Model[] models2 = [new NodeModel()
     ]
 }];
 
+string mySqlConn = "server=localhost;user=root;password=1234;database=todos";
+
 Server serverNet = new MinNetServer()
 {
     Language = Language.Net8,
-    Database = Database.MySql,
-    DataBaseURL = "server=localhost;user=root;password=1234;database=todos",
+    Database = Database.MySql,//Database.SqlServer,
+    DataBaseURL = mySqlConn,//"Server=localhost\\SQLEXPRESS;Initial Catalog=todos;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=True;",
     Models = models2
 };
 bool success = serverNet.Generate();
+
 
 Console.WriteLine(ProjectInfo.ProjectName+" "+ success);
