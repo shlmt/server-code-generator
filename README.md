@@ -41,12 +41,15 @@
 
     `git checkout -b feature-name`
 
-2.  **Code (ביצוע שינויים)**\
+2. **Issue**\
+  בחרו בעיה לפתרון מתוך הרשימה [issues](https://github.com/shlmt/server-code-generator/issues), או חשבו על שיפור ושדרוג משלכם.
+
+4.  **Code (ביצוע שינויים)**\
     הוסיפו את השינויים לקוד ובצעו Commit.
 
     `git commit -m "message"`
 
-3.  **Pull Request (בקשת מיזוג לקוד הראשי)**\
+4.  **Pull Request (בקשת מיזוג לקוד הראשי)**\
     שלחו Pull Request עם תיאור ברור של השינויים שביצעתם.
 
 לקריאה נוספת על תרומה לקוד פתוח: [מדריך למתחילות: איך להתחיל לתרום לקוד פתוח](https://maakaf.netlify.app/newbies/he_how-to-start-os-practice/)
